@@ -158,6 +158,17 @@ $(document).ready(function () {
 | a    | b      | c     |
 >如果不使用对齐标记，单元格中的内容默认左对齐；表头单元格中的内容会一直居中对齐（不同的实现可能会有不同表现）。
 
+## 表内换行
+```
+| left | center | right |
+| :--- | :----: | ----: |
+| aaaa | bbbbbb | ccccc<br>dddd |
+```
+| left | center | right |
+| ---- | ------ | :---- |
+| aaaa | bbbbbb | ccccc<br>dddd |
+
+
 ## 插入其他内容
 表格中可以插入其他 Markdown 中的行内标记：
 ```
