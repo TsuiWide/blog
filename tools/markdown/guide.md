@@ -1,15 +1,28 @@
 
 * [Learning-Markdown (Markdown 入门参考)](https://xianbai.me/learn-md/index.html) 
 
+# 标题
+## setext格式
+```
+H1
+====
+h2
+----
+```
+H1
+====
+h2
+----
+> = 和 - 的数量是没有限制的。通常的做法是使其和标题文本的长度相同，这样看起来比较舒服。或者可以像我一样，用四个 - 或 =。<br> Setext 形式只支持 h1 和 h2 两种标题。
+
+## ate格式
 # MarkDown test
 ## what is markdown
 ## how does it work
 ## why we need markdown
 ### this is 
 #### faf 
-fasf dfa fad 
-fasd  
-fa  
+ 
 *斜体文本*  
 _斜体文本_  
 **粗体文本**  
