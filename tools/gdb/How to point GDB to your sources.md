@@ -3,6 +3,7 @@
 ## gdb source path
 usually used command：
 >1.set substitute-path /local/xukuan/repo/gdb_demo /home/xukuan/repo/gdb_demo
+
 >2.directory /home/xukuan/repo/gdb_demo
 
 ## Debug info
