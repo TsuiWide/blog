@@ -101,7 +101,7 @@ as we see in our fresh compiled libgbd.so - it has .debug_* section, hence it ha
 >$ objdump -g libgbd.so | vim -
 >
 >Contents of the .debug_info section:
->\
+>
 >   Compilation Unit @ offset 0x0:
 >   Length:        0x18653 (32-bit)
 >   Version:       4
@@ -137,7 +137,7 @@ You can direct GDB to the new source path right in the debug session with direct
 >(gdb) directory /home/xukuan/repo/gdb_demo
 >Source directories searched: /home/xukuan/repo/gdb_demo:$cdir:$cwd
 >(gdb) list
->6	#ifdef \_\_FreeBSD\_\_
+>6	#ifdef __FreeBSD__
 >7	#include <fenv.h>
 >8	#endif
 >9	
@@ -154,11 +154,11 @@ Sometimes adding another source path is not enough if you have complex hierarchy
 
 >```
 >(gdb) list
->5      target.c: No such file or directory.
+>5      gdb_demo.c: No such file or directory.
 >(gdb) set substitute-path /local/xukuan/repo/gdb_demo /home/xukuan/repo/gdb_demo
 >(gdb) list
 >(gdb) list
->6	#ifdef \_\_FreeBSD\_\_
+>6	#ifdef __FreeBSD__
 >7	#include <fenv.h>
 >8	#endif
 >9	
