@@ -1,8 +1,8 @@
 return {
-	{
-		"RRethy/nvim-base16",
-		lazy = true,
-	},
+    {
+        "RRethy/nvim-base16",
+        lazy = true,
+    },
     {
         "folke/tokyonight.nvim",
         lazy = true,

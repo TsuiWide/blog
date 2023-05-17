@@ -10,10 +10,10 @@ au BufNewFile,BufRead */ssh/config  setf sshconfig
 au CursorHold,CursorHoldI * checktime
 ]])
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
-	pattern = { "*" },
-	callback = function()
-		vim.highlight.on_yank({
-			timeout = 300,
-		})
-	end,
+    pattern = { "*" },
+    callback = function()
+        vim.highlight.on_yank({
+            timeout = 300,
+        })
+    end,
 })
