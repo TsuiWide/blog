@@ -29,3 +29,10 @@ require("lazy").setup("plugins", {
 --vim.cmd.colorscheme("base16-tender")
 --vim.cmd.colorscheme("tokyonight")
 vim.cmd.colorscheme("gruvbox")
+
+local lspconfig = require('lspconfig')
+
+require("mason").setup()
+require("mason-lspconfig").setup()
+
+require("lspconfig").lua_ls.setup {}
