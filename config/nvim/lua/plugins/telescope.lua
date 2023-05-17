@@ -1,6 +1,4 @@
 return {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
-
     cmd = "Telescope",
     keys = {
         { "<C-e>", ":lua project_picker(require('telescope.themes').get_dropdown{})<CR>", desc = "smart location" },
@@ -9,6 +7,6 @@ return {
         { "<Leader>P", ":Telescope live_grep<CR>", {} },
         { "<C-q>", ":Telescope oldfiles<CR>", {} },
     },
-
+    'nvim-telescope/telescope.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
 }
