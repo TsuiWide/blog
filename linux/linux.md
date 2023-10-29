@@ -33,6 +33,10 @@
 2. driver
 3. device
 ## kobject
+
+参考
+* [Linux 内核：设备驱动模型（1）sysfs与kobject基类](https://www.cnblogs.com/schips/p/linux_device_model_1.html)
+
 内核用kobject表示一个内核对象.
 将一个kobject对象加入系统中，对应的结果反映到/sys目录中就是一个新目录的建立或者消亡。除了向用户空间展示不同kobject的层次关系。还可以通过文件系统接口配置kobject对象的属性。
 ```
