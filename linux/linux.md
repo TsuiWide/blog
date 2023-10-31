@@ -28,17 +28,22 @@
 #### 内部构成的数据结构
 1. kobject
 2. kset
+
 #### 对外展示的数据结构
 1. bus
 2. driver
 3. device
+
 ## kobject
 
 参考
 * [Linux 内核：设备驱动模型（1）sysfs与kobject基类](https://www.cnblogs.com/schips/p/linux_device_model_1.html)
+* [Linux下的驱动设备分离思想](https://mp.weixin.qq.com/s/KOFukYWnp-Nur2s1iaT58w)
+* [device和driver匹配过程分析](https://hulc.xyz/2021/11/23/platform_device%E5%92%8Cplatform_driver%E5%8C%B9%E9%85%8D%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90/)
 
 内核用kobject表示一个内核对象.
 将一个kobject对象加入系统中，对应的结果反映到/sys目录中就是一个新目录的建立或者消亡。除了向用户空间展示不同kobject的层次关系。还可以通过文件系统接口配置kobject对象的属性。
+
 ```
 struct kobject {
 	const char		*name; //内核对象名字，出现在sysfs文件系统中，表现为一个新的目录名
@@ -58,12 +63,15 @@ struct kobject {
 	unsigned int uevent_suppress:1; //所在的kset是否向用户空间发送event消息
 };
 ```
+
 kobject嵌入在表示某一对象的数据结构中，比如cdev对象
+
 ```
 kobject_set_name
 kobject_init
 kobject_add
 ```
+
 kobject_add作用
 1. 建立kobject对象之间的层次关系
 2. 在sysfs文件系统中建立一个目录。
@@ -83,6 +91,16 @@ struct kobj_type {
 
 ## kset
 kset可以认为是一组kobject的集合，是kobject的容器。kset本身也是一个内核对象，所以需要内嵌一个kobject对象。
+
+## bug
+
+## driver
+
+## device
+
+## 设备树
+### 概念
+设备数(Device Tree), 描述设备树的文件叫DTS(Device Tree Source)，DTB是将DTS编译以后得到的二进制文件。编译的工具叫DTC，DTC工具源码位于linux内核的scripts/dtc
 
 
 ---
