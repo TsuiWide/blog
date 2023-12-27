@@ -14,5 +14,15 @@
 ## SPARSEMEM 稀疏内存模型
 SPARSEMEM 稀疏内存模型的核心思想就是对粒度更小的连续内存块进行精细的管理，用于管理连续内存块的单元被称作 section。
 
+# 内存架构
+
+## 一致性内存访问 UMA 架构
+UMA（Uniform Memory Access）
+内存是一个整体，所有的 CPU 访问内存都要过总线，而且距离都是一样的。
+
+## 非一致性内存访问 NUMA 架构
+NUMA（Non-uniform memory access）
+内存被分为一个一个节点(NUMA节点)。每个 CPU 都有属于自己的本地内存节点，CPU 访问自己的本地内存不需要经过总线，因此访问速度是最快的。
+
 参考
 * [一步一图带你深入理解 Linux 物理内存管理](https://mp.weixin.qq.com/s?__biz=Mzg2MzU3Mjc3Ng==&mid=2247486879&idx=1&sn=0bcc59a306d59e5199a11d1ca5313743&chksm=ce77cbd8f90042ce06f5086b1c976d1d2daa57bc5b768bac15f10ee3dc85874bbeddcd649d88&cur_album_id=2559805446807928833&scene=189#wechat_redirect)
