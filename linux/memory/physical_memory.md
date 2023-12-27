@@ -60,6 +60,56 @@ enum zone_type {
  __MAX_NR_ZONES
 };
 ```
+```
+struct zone {
+    // 防止并发访问该内存区域
+    spinlock_t      lock;
+    // 内存区域名称：Normal ，DMA，HighMem
+    const char      *name;
+    // 指向该内存区域所属的 NUMA 节点
+    struct pglist_data  *zone_pgdat;
+    // 属于该内存区域中的第一个物理页 PFN
+    unsigned long       zone_start_pfn;
+    // 该内存区域中所有的物理页个数（包含内存空洞）
+    unsigned long       spanned_pages;
+    // 该内存区域所有可用的物理页个数（不包含内存空洞）
+    unsigned long       present_pages;
+    // 被伙伴系统所管理的物理页数
+    atomic_long_t       managed_pages;
+    // 伙伴系统的核心数据结构
+    struct free_area    free_area[MAX_ORDER];
+    // 该内存区域内存使用的统计信息
+    atomic_long_t       vm_stat[NR_VM_ZONE_STAT_ITEMS];
+} ____cacheline_internodealigned_in_smp;
+typedef struct pglist_data {
+    // NUMA 节点中的物理内存区域个数
+    int nr_zones; 
+    // NUMA 节点中的物理内存区域
+    struct zone node_zones[MAX_NR_ZONES];
+}
+```
+
+## 物理内存区域中的水位线
+在内核中，物理内存页有两种类型，针对这两种类型的物理内存页，内核会有不同的回收机制。<br>
+第一种就是文件页。读取的磁盘数据缓存在 page cache 中，page cache 里存放的就是文件页。在进程中通过  fsync()  系统调用将指定文件的所有脏页同步回写到磁盘，同时内核也会根据一定的条件唤醒专门用于回写脏页的 pflush 内核线程。<br>
+另外一种物理页类型是匿名页，所谓匿名页就是它背后并没有一个磁盘中的文件作为数据来源，匿名页中的数据都是通过进程运行过程中产生的，比如我们应用程序中动态分配的堆内存。匿名页的回收机制就是我们经常看到的 Swap 机制。<br>
+内核会为每个 NUMA 节点中的每个物理内存区域定制三条用于指示内存容量的水位线，分别是：WMARK_MIN（页最小阈值）， WMARK_LOW （页低阈值），WMARK_HIGH（页高阈值）。<br>
+```
+enum zone_watermarks {
+ WMARK_MIN,
+ WMARK_LOW,
+ WMARK_HIGH,
+ NR_WMARK
+};
+struct zone {
+    // 物理内存区域中的水位线
+    unsigned long _watermark[NR_WMARK];
+    // 优化内存碎片对内存分配的影响，可以动态改变内存区域的基准水位线。
+    unsigned long watermark_boost;
+
+} ____cacheline_internodealigned_in_smp;
+```
+水位线的计算是通过**__setup_per_zone_wmarks**得到的。
 
 
 参考
