@@ -2,8 +2,8 @@
 
 ## gdb source path
 usually used command：
->1.set substitute-path /local/xukuan/repo/gdb_demo /home/xukuan/repo/gdb_demo  
->2.directory /home/xukuan/repo/gdb_demo
+>1.set substitute-path /local/user_name/repo/gdb_demo /home/user_name/repo/gdb_demo  
+>2.directory /home/user_name/repo/gdb_demo
 
 ## Debug info
 compiler with -g option
@@ -111,13 +111,13 @@ as we see in our fresh compiled libgbd.so - it has .debug_* section, hence it ha
 >    \<c>   DW_AT_producer    : (indirect string, offset: 0x16c5f): GNU C11 7.4.0 -mtune=generic >-march=x86-64 -g -g -O0 -O0 -fno-strict-aliasing -fPIC -fstack-protector-strong
 >    <10>   DW_AT_language    : 12   (ANSI C99)
 >    <11>   DW_AT_name        : (indirect string, offset: 0x10f5e): gdb_demo.c
->    <15>   DW_AT_comp_dir    : (indirect string, offset: 0x21b04): /local/xukuan/repo/gdb_demo/>src
+>    <15>   DW_AT_comp_dir    : (indirect string, offset: 0x21b04): /local/user_name/repo/gdb_demo/>src
 >    <19>   DW_AT_low_pc      : 0x47a1a
 >    <21>   DW_AT_high_pc     : 0x4c6a
 >    <29>   DW_AT_stmt_list   : 0x0
 >```
 
-It reads like this - for address range from DW_AT_low_pc = 0x47a1a to DW_AT_low_pc + DW_AT_high_pc = 0x47a1a + 0x4c6a = 0x4be0b source code file is the gdb_demo.c located in /local/xukuan/repo/gdb_demo/src. Pretty straightforward.
+It reads like this - for address range from DW_AT_low_pc = 0x47a1a to DW_AT_low_pc + DW_AT_high_pc = 0x47a1a + 0x4c6a = 0x4be0b source code file is the gdb_demo.c located in /local/user_name/repo/gdb_demo/src. Pretty straightforward.
 
 So this is what happens when GDB tries to show you the source code:
 
@@ -134,8 +134,8 @@ You can direct GDB to the new source path right in the debug session with direct
 >```
 >(gdb) list
 >13      gdb_demo.c: No such file or directory.
->(gdb) directory /home/xukuan/repo/gdb_demo
->Source directories searched: /home/xukuan/repo/gdb_demo:$cdir:$cwd
+>(gdb) directory /home/user_name/repo/gdb_demo
+>Source directories searched: /home/user_name/repo/gdb_demo:$cdir:$cwd
 >(gdb) list
 >6	#ifdef __FreeBSD__
 >7	#include <fenv.h>
@@ -155,7 +155,7 @@ Sometimes adding another source path is not enough if you have complex hierarchy
 >```
 >(gdb) list
 >5      gdb_demo.c: No such file or directory.
->(gdb) set substitute-path /local/xukuan/repo/gdb_demo /home/xukuan/repo/gdb_demo
+>(gdb) set substitute-path /local/user_name/repo/gdb_demo /home/user_name/repo/gdb_demo
 >(gdb) list
 >(gdb) list
 >6	#ifdef __FreeBSD__
