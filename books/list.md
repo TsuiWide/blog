@@ -71,4 +71,4 @@
 1. [CS2006 计算机组成]()
 
 # EE
-1. [https://www.analog.com/cn/lp/002/analog-circuit-compilation-yang.html](《新概念模拟电路》全五册)
+1. [《新概念模拟电路》全五册](https://www.analog.com/cn/lp/002/analog-circuit-compilation-yang.html)
